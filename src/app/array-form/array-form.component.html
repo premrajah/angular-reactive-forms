@@ -1,0 +1,31 @@
+<mat-card>
+    <form [formGroup]="arrayForm">
+        Values: {{ arrayForm.value | json }}
+        <hr>
+
+        <mat-form-field>
+          <input matInput type="email" placeholder="email" formControlName="email" >
+        </mat-form-field>
+
+        <div formArrayName="phones">
+          <div *ngFor="let phone of phoneForms.controls; let i = index" [formGroupName]="i">
+            <mat-form-field>
+              <input matInput type="text" placeholder="+44" formControlName="area">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="text" placeholder="0000" formControlName="prefix">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="text" placeholder="000000" formControlName="line">
+            </mat-form-field>
+
+            <button mat-raised-button color="warn" (click)="deletePhone(i)">Delete</button>
+          </div>
+        </div>
+
+        <div>
+          <button mat-raised-button color="primary" (click)="addPhone()">Add Phone</button>
+        </div>
+
+      </form>
+</mat-card>
