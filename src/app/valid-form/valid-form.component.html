@@ -1,3 +1,73 @@
-<p>
-  valid-form works!
-</p>
+<mat-card>
+  <form [formGroup]="validationForm">
+    Values: {{ validationForm.value | json }}
+    <hr />
+
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="email"
+          formControlName="email"
+          autocomplete=""
+          type="email"
+        />
+
+        <mat-error *ngIf="email.invalid && email.touched">
+          Your email does not look right.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- end email -->
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="password"
+          formControlName="password"
+          autocomplete=""
+          type="password"
+        />
+        <mat-hint align="end">
+          Must have one letter and one number.
+        </mat-hint>
+
+        <mat-error *ngIf="password.invalid && password.touched">
+          That password sucks.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- end password -->
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="age" [value]="0" formControlName="age" />
+
+        <mat-error *ngIf="age.errors?.min && age.touched">
+          {{ age.errors?.min.actual }} is too young to use this app kiddo!
+        </mat-error>
+
+        <mat-error *ngIf="age.errors?.max && age.touched">
+          {{ age.errors?.max.actual }} is too old to use this app Grandpa!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- end age -->
+
+    <div>
+      <mat-checkbox formControlName="agree" color="primary"
+        >Are you sure?</mat-checkbox
+      >
+    </div>
+
+    <hr />
+
+    <button
+      mat-raised-button
+      [disabled]="validationForm.invalid"
+      color="accent"
+    >
+      Submit
+    </button>
+  </form>
+</mat-card>
