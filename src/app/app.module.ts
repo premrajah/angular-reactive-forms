@@ -18,6 +18,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -31,6 +34,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
    ],
    imports: [
       BrowserModule,
+      AngularFireModule.initializeApp(environment.firebase),
       ReactiveFormsModule,
       AppRoutingModule,
       BrowserAnimationsModule,
@@ -42,7 +46,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
       MatChipsModule,
       MatCardModule
    ],
-   providers: [],
+   providers: [AngularFirestore],
    bootstrap: [
       AppComponent
    ]

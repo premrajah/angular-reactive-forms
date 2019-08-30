@@ -1,3 +1,24 @@
-<p>
-  submit-form works!
-</p>
+<mat-card>
+  <form [formGroup]="submitableForm" [hidden]="success" (ngSubmit)="submitHandler()">
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="email" type="email" formControlName="email">
+      </mat-form-field>
+    </div>
+    <!-- end email -->
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="message" type="text" formControlName="message">
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="accent" type="submit" [disabled]="submitableForm.invalid">Submit</button>
+
+  </form>
+
+  <div *ngIf="success" class="notification is-success" >
+    Yay! We recived the data in the database
+  </div>
+</mat-card>
